@@ -8,11 +8,15 @@ import SelectOption from './_components/SelectOption';
 import { UserInputContext } from '../_context/UserInputContext';
 import { GenerateCourseLayout_AI } from '@/configs/AiModel';
 import LoadingDialog from './_components/LoadingDialog';
+
 import { db } from '@/configs/db';
 import { CourseList } from '@/configs/schema';
+
 import uuid4 from 'uuid4';
+
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+
 function CreateCourse() {
   const StepperOptions = [
     {
@@ -36,6 +40,7 @@ function CreateCourse() {
   const [activeIndex, setActiveIndex] = useState(0);
   const {user}=useUser();
   const router=useRouter();
+  
   useEffect(()=>{
     console.log(userCourseInput);
   },[userCourseInput])

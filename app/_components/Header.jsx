@@ -1,16 +1,15 @@
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
+
 import Link from 'next/link'
 import React from 'react'
 
 function Header() {
   return (
-    <div className='flex justify-between p-5 shadow-sm'>
-      <Link href={'/'}>
-        <Image src={'/logo.png'} width={150} height={100}/>
+    <div className='flex justify-between py-2 px-4 shadow-sm items-center'>
+      <Link href={'/'} className='font-black'>
+        AI Course GenX
         </Link>
         <Link href={'/dashboard'}>
-          <Button>Get Started</Button>
+          <button className="rounded-md px-4 py-2 bg-black text-white">Get Started</button>
         </Link>
     </div>
   )
