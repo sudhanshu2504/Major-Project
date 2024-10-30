@@ -1,15 +1,14 @@
 "use client"
+import React, { useContext } from 'react';
 import { Progress } from '@/components/ui/progress';
 import Image from 'next/image'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useContext } from 'react'
 import { HiOutlineHome,HiOutlineSquare3Stack3D,HiOutlineShieldCheck,HiOutlinePower } from "react-icons/hi2";
 ;
 import { UserCourseListContext } from '@/app/_context/UserCourseListContext';
 
 function SideBar() {
-    const {userCourseList,setUserCourseList}=useContext(UserCourseListContext);
     const Menu=[
         {
             id:1,
@@ -36,6 +35,7 @@ function SideBar() {
             path:'/'
         }
     ]
+    const {userCourseList,setUserCourseList} = useContext(UserCourseListContext);
     const path=usePathname();
   return (
     <div className='fixed h-full md:w-64 p-5 shadow-md'>

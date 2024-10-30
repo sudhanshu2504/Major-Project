@@ -1,28 +1,25 @@
-"use client"
-import { db } from '@/configs/db';
-import { CourseList } from '@/configs/schema';
+"use client";
+
 import { useUser } from '@clerk/nextjs';
-import { and, eq } from 'drizzle-orm';
 
 import React, { useEffect, useState } from 'react'
 import CourseBasicInfo from '../_components/CourseBasicInfo';
 import { useRouter } from 'next/navigation';
 import { HiOutlineClipboardDocumentCheck } from "react-icons/hi2";
+import axios from 'axios';
 
 function FinishScreen({params}) {
     const { user } = useUser();
-    const [course,setCourse]=useState([]);
+    const [course,setCourse]=useState(null);
     const router=useRouter();
     useEffect(() => {
       params && GetCourse();
     }, [params,user])
   
     const GetCourse = async () => {
-      const result = await db.select().from(CourseList)
-        .where(and(eq(CourseList.courseId, params?.courseId),
-          eq(CourseList?.createdBy, user?.primaryEmailAddress?.emailAddress)))
-          setCourse(result[0]);
-          console.log(result);
+      const result = await axios.post(`/api/getCourse`, {courseId: params?.courseId});
+      setCourse(result.data.course);
+      console.log("Course : ",result.data.course);
     }
   return (
     <div className='px-10 md:px-20 lg:px-44 my-7'>
@@ -43,4 +40,4 @@ function FinishScreen({params}) {
   )
 }
 
-export default FinishScreen
+export default FinishScreen;

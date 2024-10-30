@@ -1,10 +1,8 @@
-"use client"
-import { db } from '@/configs/db'
-import { Chapters, CourseList } from '@/configs/schema'
-import { and, eq } from 'drizzle-orm'
+"use client";
 import React, { useEffect, useState } from 'react'
 import ChapterListCard from './_components/ChapterListCard'
 import ChapterContent from './_components/ChapterContent'
+import axios from 'axios'
 
 function CourseStart({params}) {
 
@@ -15,22 +13,17 @@ function CourseStart({params}) {
 
     useEffect(() => {
         GetCourse();
+        GetSelectedChapterContent(0);   
     }, []);
 
     const GetCourse = async () => {
-        const result = await db.select().from(CourseList)
-            .where(eq(CourseList?.courseId, params?.courseId));
-
-        setCourse(result[0]);
+        const result = await axios.post('/api/getCourse', { courseId: params?.courseId });
+        setCourse(result.data.course);
     }
 
     const GetSelectedChapterContent = async (chapterId) => {
-        const result = await db.select().from(Chapters)
-            .where(and(eq(Chapters.chapterId, chapterId),
-                eq(Chapters.courseId, course?.courseId)));
-
-        setChapterContent(result[0]);
-        console.log(result);
+        const result = await axios.post('/api/getChapterContent', { courseId: params?.courseId, chapterId });
+        setChapterContent(result.data.chapterContent);
     }
 
     return (

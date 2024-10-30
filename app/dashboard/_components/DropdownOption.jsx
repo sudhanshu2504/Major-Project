@@ -3,10 +3,8 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+  } from '@/components/ui/dropdown-menu';
   import { HiOutlineTrash } from "react-icons/hi2";
   import {
     AlertDialog,

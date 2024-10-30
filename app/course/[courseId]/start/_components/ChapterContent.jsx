@@ -11,8 +11,6 @@ const opts = {
 };
 
 function ChapterContent({ chapter, content }) {
-    console.log(chapter);
-
     return (
         <div className='p-4 md:p-10'>
             <h2 className='font-medium text-xl md:text-2xl'>{chapter?.name}</h2>

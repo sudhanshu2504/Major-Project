@@ -1,11 +1,9 @@
 "use client"
-import { db } from '@/configs/db'
-import { CourseList } from '@/configs/schema'
 import { useUser } from '@clerk/nextjs'
-import { desc, eq } from 'drizzle-orm'
 import React, { useContext, useEffect, useState } from 'react'
 import CourseCard from './CourseCard'
 import { UserCourseListContext } from '@/app/_context/UserCourseListContext'
+import axios from 'axios'
 
 function UserCourseList() {
 
@@ -15,15 +13,15 @@ function UserCourseList() {
 
 
   useEffect(()=>{
+    console.log(user);
     user&&getUserCourses();
   },[user])
 
   const getUserCourses=async()=>{
-    const result= await db.select().from(CourseList)
-    .where(eq(CourseList?.createdBy,user?.primaryEmailAddress?.emailAddress))
-    .orderBy(desc(CourseList.id))
-    setCourseList(result);
-    setUserCourseList(result);
+    const result = await axios.post('/api/getUserCourses',{createdBy:user?.id});
+    setUserCourseList(result.data.courseList);
+    setCourseList(result.data.courseList);
+    console.log(result);
   }
   return (
     <div className='mt-10'>

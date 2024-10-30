@@ -1,5 +1,5 @@
 "use client"
-import { Button } from '@/components/ui/button';
+import {Button} from '@/components/ui/button';
 import React, { useContext, useEffect, useState } from 'react'
 import { HiMiniSquares2X2, HiLightBulb, HiClipboardDocumentCheck } from "react-icons/hi2";
 import SelectCategory from './_components/SelectCategory';
@@ -9,9 +9,7 @@ import { UserInputContext } from '../_context/UserInputContext';
 import { GenerateCourseLayout_AI } from '@/configs/AiModel';
 import LoadingDialog from './_components/LoadingDialog';
 
-import { db } from '@/configs/db';
-import { CourseList } from '@/configs/schema';
-
+import axios from 'axios';
 import uuid4 from 'uuid4';
 
 import { useUser } from '@clerk/nextjs';
@@ -74,7 +72,7 @@ function CreateCourse() {
     const USER_INPUT_PROMPT='Category: '+userCourseInput?.category+', Topic: '+userCourseInput?.topic+', Level:'+userCourseInput?.level+', Duration:'+userCourseInput?.duration+', NoOf Chapters:'+userCourseInput?.noOfChapter+' , in JSON format'
     const FINAL_PROMPT=BASIC_PROMPT+USER_INPUT_PROMPT;
     console.log(FINAL_PROMPT);
-    const result=await GenerateCourseLayout_AI.sendMessage(FINAL_PROMPT);
+    const result = await GenerateCourseLayout_AI.sendMessage(FINAL_PROMPT);
     console.log(result.response?.text());
     console.log(JSON.parse(result.response?.text()))
     setLoading(false);
@@ -82,19 +80,20 @@ function CreateCourse() {
   }
 
 
-  const SaveCourseLayoutInDb=async(courseLayout)=>{
+  const SaveCourseLayoutInDb = async(courseLayout)=>{
     var id = uuid4();//Course Id
     setLoading(true)
-    const result= await db.insert(CourseList).values({
+    const result = await axios.post('/api/createCourse',{
       courseId:id,
       name:userCourseInput?.topic,
       level:userCourseInput?.level,
       category:userCourseInput?.category,
       courseOutput:courseLayout,
-      createdBy:user?.primaryEmailAddress?.emailAddress,
+      createdBy:user?.id,
       userName:user?.fullName,
       userProfileImage:user?.imageUrl
     })
+    console.log(result);
 
     console.log("Finish");
     setLoading(false);

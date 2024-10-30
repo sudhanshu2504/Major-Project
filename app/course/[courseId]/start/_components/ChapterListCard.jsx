@@ -1,5 +1,6 @@
 import React from 'react'
 import { HiOutlineClock } from "react-icons/hi2";
+
 function ChapterListCard({chapter,index}) {
   return (
     <div className='grid grid-cols-5 p-4 items-center border-b'>

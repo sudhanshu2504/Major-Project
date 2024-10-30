@@ -1,23 +1,20 @@
 "use client"
-import { db } from '@/configs/db'
-import { CourseList } from '@/configs/schema'
 import React, { useEffect, useState } from 'react'
 import CourseCard from '../_components/CourseCard';
 import { Button } from '@/components/ui/button';
+import axios from 'axios';
 
 function Explore() {
 
   const [courseList,setCourseList]=useState([]);
-  const [pageIndex,setPageIndex]=useState(0);
+  const [pageIndex,setPageIndex]=useState(1);
   useEffect(()=>{
     GetAllCourse();
   },[pageIndex])
 
   const GetAllCourse=async()=>{
-    const result=await db.select().from(CourseList)
-    .limit(9)
-    .offset(pageIndex*9);
-    setCourseList(result);
+    const result=await axios.post('/api/getAllCourse',{pageIndex});
+    setCourseList(result.data.courseList);
     console.log(result);
   }
 
