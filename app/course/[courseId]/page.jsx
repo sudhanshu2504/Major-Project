@@ -24,19 +24,13 @@ function Course({params}) {
   return (
     <div>
         <Header/>
-        <div className='px-10 p-10 md:px-20 lg:px-44'>
+        <div className='px-10 p-10 md:px-20 lg:px-44 bg-black text-white'>
         <CourseBasicInfo course={course} edit={false} />
 
         <CourseDetail course={course} />
 
         <ChapterList course={course} edit={false} />
 </div>
-<h2 className='text-sm text-gray-400 text-center mb-10'>
-  This course was created by {' '}
-  <Link href='https://www.linkedin.com/in/sourabh-vishwakarma-a947a92a8/' className='text-blue-500 hover:underline'>
-  Sourabh Vishwakarma
-  </Link>
-</h2>
     </div>
   )
 }

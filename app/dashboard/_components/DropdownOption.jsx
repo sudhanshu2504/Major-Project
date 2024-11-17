@@ -35,7 +35,7 @@ function DropdownOption({children,handleOnDelete}) {
 
   <AlertDialog open={openAlert}>
 
-  <AlertDialogContent>
+  <AlertDialogContent classNamebg-white>
     <AlertDialogHeader>
       <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
       <AlertDialogDescription>

@@ -5,7 +5,7 @@ import { UserInputContextProvider } from '../_context/UserInputContext'
 
 function CreateCourseLayout({children}) {
   return (
-    <div>
+    <div className='bg-black text-white min-h-screen'>
       <UserInputContextProvider>
         <Header/>
         {children}

@@ -37,7 +37,7 @@ function CourseLayout({ params }) {
   
       if (response.success) {
         console.log('Chapters generated successfully:', response);
-        router.replace(`/create-course/${course?.courseId}/finish`);
+        router.push(`/create-course/${course?.courseId}/finish`);
       } else {
         console.error('Error generating chapters:', response.error);
       }
@@ -60,7 +60,7 @@ function CourseLayout({ params }) {
       {/* List of Lesson  */}
         <ChapterList course={course} refreshData={()=>GetCourse()}/>
 
-      <Button onClick={GenerateChapterContent} className="my-10">Generate Course Content</Button>
+      <Button onClick={GenerateChapterContent} className="my-10 bg-gradient-to-br from-blue-500 to-purple-700">Generate Course Content</Button>
     </div>
   )
 }

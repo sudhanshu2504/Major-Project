@@ -39,16 +39,14 @@ function SideBar() {
     const path=usePathname();
   return (
     <div className='fixed h-full md:w-64 p-5 shadow-md'>
-        <Image src={'/logo.png'} width={120} height={100} />
         <hr className='my-5' />
-
         <ul>
             {Menu.map((item,index)=>(
                 <Link href={item.path} key={index}>
-                    <div className={`flex items-center gap-2 text-gray-600
+                    <div className={`flex items-center gap-2 text-gray-300
                     p-3 cursor-pointer hover:bg-gray-100
                     hover:text-black rounded-lg mb-3
-                    ${item.path==path&&'bg-gray-100 text-black'}`}> 
+                    ${item.path==path&&'bg-white/20 border-opacity-50 border-white border text-black'}`}> 
                         <div className='text-2xl'>{item.icon}</div>
                         <h2>{item.name}</h2>
                     </div>
@@ -57,7 +55,7 @@ function SideBar() {
         </ul>
 
         <div className='absolute bottom-10 w-[80%]'>
-            <Progress value={(userCourseList?.length/5)*100} />
+            <Progress className value={(userCourseList?.length/5)*100} />
             <h2 className='text-sm my-2'>{userCourseList?.length} Out of 5 Course created</h2>
             <h2 className='text-xs text-gray-500'>Upgrade your plan for unlimted course generate</h2>
 

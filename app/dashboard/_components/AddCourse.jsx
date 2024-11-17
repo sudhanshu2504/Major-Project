@@ -14,7 +14,7 @@ function AddCourse() {
             <p className='text-sm text-gray-500'>Create new course with AI, Share with friends and Earn from it</p>
         </div>
         <Link href='/create-course'>
-             <Button>+ Create AI Course</Button>
+             <Button className="bg-white text-black">+ Create AI Course</Button>
         </Link>
     </div>
   )

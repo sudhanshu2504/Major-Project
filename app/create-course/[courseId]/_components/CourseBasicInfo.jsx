@@ -54,12 +54,12 @@ function CourseBasicInfo({ course, refreshData, edit = true }) {
   }
 
   return (
-    <div className='p-10 border rounded-xl shadow-sm mt-5 relative'>
+    <div className='p-10 border border-gray-700 rounded-xl shadow-sm mt-5 relative'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
         <div>
           <h1 className='text-2xl font-bold'>{course?.courseOutput?.course?.name}</h1>
           <p className='text-sm text-gray-400 mt-3 '>{course?.courseOutput?.course?.description}</p>
-          <h2 className='font-medium mt-2 flex gap-2 items-center text-base text-white bg-gradient-to-br from-purple-700 to-blue-400 rounded w-fit px-2'>
+          <h2 className='font-medium mt-2 flex gap-2 items-center text-sm text-white bg-gradient-to-br from-purple-700 to-blue-400 rounded w-fit px-2 py-1'>
             <HiOutlineRectangleStack />{course?.category}
           </h2>
           {!edit && <Link href={'/course/' + course?.courseId + "/start"}>

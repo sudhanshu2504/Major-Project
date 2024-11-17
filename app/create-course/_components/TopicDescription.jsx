@@ -18,7 +18,7 @@ function TopicDescription() {
         <div className='mt-5'>
             <label>💡 Write the topic for which you want to generate a course (e.g., Python Course, Yoga, etc.):</label>
             <Input placeholder={'Topic'} 
-            className="h-14 text-xl" 
+            className="h-14 text-xl border border-gray-700 mt-2" 
             defaultValue={userCourseInput?.topic}
             onChange={(e)=>handleInputChange('topic',e.target.value)}
             />
@@ -26,7 +26,7 @@ function TopicDescription() {
         <div className='mt-5'>
             <label>📝 Tell us more about your course, what you want to include in the course (Optional)</label>
             <Textarea placeholder="About your course" 
-            className="h-24 text-xl" 
+            className="h-24 text-xl border border-gray-700 mt-2" 
             defaultValue={userCourseInput?.description}
             onChange={(e)=>handleInputChange('description',e.target.value)}
             />
